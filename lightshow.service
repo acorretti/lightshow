@@ -1,0 +1,15 @@
+[Unit]
+Description=Nanoq Lights service
+
+[Service]
+Type=simple
+ExecStart=/opt/src/lightshow/bin/python3 /opt/src/lightshow/src/lightshow.py
+WorkingDirectory=/opt/src/lightshow
+User=openrgb
+Group=plugdev
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
