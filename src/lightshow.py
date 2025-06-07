@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from openrgb import OpenRGBClient
-from openrgb.utils import RGBColor, DeviceType, ModeFlags
-import ifaddr
-import schedule
-import time
 import datetime
+import subprocess
+import time
+
+import schedule
+from openrgb import OpenRGBClient
+from openrgb.utils import DeviceType, ModeFlags, RGBColor
 
 
 def connect():
@@ -28,13 +29,15 @@ def rainbow():
 
 
 def checkInetStatus():
-    egress_if = next(
-        filter(lambda a: a.nice_name == "vlan603", ifaddr.get_adapters()), None
-    )
-    if egress_if is None:
-        off()
-        return False
-    return True
+    try:
+        output = subprocess.check_output(["ip", "route"], text=True)
+        for line in output.splitlines():
+            if "dev vlan603" in line and "metric 500" in line:
+                return True
+    except Exception:
+        pass
+    off()
+    return False
 
 
 def off():
