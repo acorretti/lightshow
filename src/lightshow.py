@@ -149,13 +149,13 @@ def boot():
 def no_inet():
     dev = connect()
     dev.set_mode("strobe")
-    dev.leds[0].set_color(RGBColor.fromHEX("#ff0000"))
+    dev.set_color(RGBColor.fromHEX("#ff0000"))
 
 
 def lte_fallback():
     dev = connect()
-    dev.set_mode("strobe")
-    dev.leds[0].set_color(RGBColor.fromHEX("#ffbf00"))
+    dev.set_mode("Static")
+    dev.set_color(RGBColor.fromHEX("#ffbf00"))
 
 
 day_start = datetime.time(7, 0, 0)

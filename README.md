@@ -12,7 +12,7 @@ Includes a systemd service definition.
 On Metatron, the lights reflect the router's WAN routing state:
 
 - Fiber primary: normal day/night behavior.
-- LTE fallback: amber strobe.
+- LTE fallback: solid amber.
 - No usable WAN route: red strobe.
 
 The script does not run its own internet probe. It reads
